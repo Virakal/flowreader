@@ -1,12 +1,5 @@
-<!DOCTYPE HTML>
-<html lang="en">
-    <head>
-        <meta charset="utf-8" />
-        <link rel="stylesheet" href="/css/css.css" />
-        <title>FlowReader</title>
-    </head>
+{% extends 'layout.html.twig' %}
 
-    <body>
-        <div id="content">{% block content %}{% endblock %}</div>
-    </body>
-</html>
+{% block content %}
+<h1>Welcome to {{app.config.site.name}}</h1>
+{% endblock %}
