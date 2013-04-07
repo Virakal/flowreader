@@ -1,6 +1,5 @@
 {
     "require": {
-        "silex/silex": "1.0.*@dev",
-        "leafo/lessphp": "0.3.9"
+        "silex/silex": "1.0.*@dev"
     }
 }
