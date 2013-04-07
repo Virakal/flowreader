@@ -1,0 +1,42 @@
+.clearfix {
+    zoom: 1;
+
+    &:before, &:after {
+        content: "";
+        display: table;
+    }
+
+    &:after {
+        clear: both;
+    }
+}
+
+.force-height(@height) {
+    height: @height;
+    max-height: @height;
+    min-height: @height;
+}
+
+.force-width(@width) {
+    max-width: @width;
+    min-width: @width;
+    width: @width;
+}
+
+.box-shadow(@params) {
+    -moz-box-shadow: @params;
+    -webkit-box-shadow: @params;
+    box-shadow: @params;
+}
+
+.text-shadow(@params) {
+    -moz-text-shadow: @params;
+    -webkit-text-shadow: @params;
+    text-shadow: @params;
+}
+
+.border-radius(@params) {
+    -moz-border-radius: @params;
+    -webkit-border-radius: @params;
+    border-radius: @params;
+}

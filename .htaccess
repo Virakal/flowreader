@@ -1,0 +1,14 @@
+Options -MultiViews
+
+#ErrorDocument 404 /static/404.php
+#ErrorDocument 403 /static/404.php
+#ErrorDocument 500 /static/404.php
+
+RewriteEngine On
+RewriteBase /
+RewriteCond %{REQUEST_FILENAME} -s [OR]
+RewriteCond %{REQUEST_FILENAME} -l [OR]
+RewriteCond %{REQUEST_FILENAME} -d
+RewriteRule ^.*$ - [NC,L]
+RewriteRule ^.*$ index.php [NC,L]
+RewriteRule ![\.(png|gif|js|css)$|^/static/*\.*] index.php [NC,L]
