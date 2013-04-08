@@ -3,7 +3,6 @@
 require_once __DIR__ . '/../vendor/autoload.php';
 
 use Symfony\Component\Yaml\Yaml;
-
 use Silex\Application;
 use Silex\Provider\TwigServiceProvider;
 use Silex\Provider\DoctrineServiceProvider;
@@ -11,7 +10,7 @@ use Silex\Provider\DoctrineServiceProvider;
 $app = new Application();
 
 // Config
-$app['config'] = Yaml::parse(__DIR__ . '/../config.yaml');
+$app['config'] = Yaml::parse(__DIR__ . '/../config/config.yaml');
 
 // Twig
 $app->register(new TwigServiceProvider(), array(

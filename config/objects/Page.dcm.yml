@@ -1,0 +1,19 @@
+Page:
+  type: entity
+  table: page
+  id:
+    id:
+      type: integer
+      generator:
+        startegy: AUTO
+  fields:
+    filename:
+      type: string
+    chapter_id:
+      type: integer
+    page_no:
+      type: integer
+    height:
+      type: integer
+    width:
+      type: integer
