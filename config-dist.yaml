@@ -13,7 +13,7 @@ database:
     host: 'localhost'
     user: 'user'
     password: 'password'
-    charset: 'utf-8'
+    charset: 'utf8'
 
 site:
     name: 'FlowReader'
