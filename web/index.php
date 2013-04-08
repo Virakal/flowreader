@@ -2,18 +2,24 @@
 
 require_once __DIR__ . '/../vendor/autoload.php';
 
-$app = new Silex\Application();
+use Symfony\Component\Yaml\Yaml;
+
+use Silex\Application;
+use Silex\Provider\TwigServiceProvider;
+use Silex\Provider\DoctrineServiceProvider;
+
+$app = new Application();
 
 // Config
-$app['config'] = Symfony\Component\Yaml\Yaml::parse(__DIR__ . '/../config.yaml');
+$app['config'] = Yaml::parse(__DIR__ . '/../config.yaml');
 
 // Twig
-$app->register(new Silex\Provider\TwigServiceProvider(), array(
+$app->register(new TwigServiceProvider(), array(
     'twig.path' => __DIR__ . '/templates',
 ));
 
 // Doctrine
-$app->register(new Silex\Provider\DoctrineServiceProvider(), array(
+$app->register(new DoctrineServiceProvider(), array(
     'db.options' => $app['config']['database'],
 ));
 
