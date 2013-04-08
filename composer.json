@@ -12,6 +12,9 @@
         "doctrine/orm": "~2.2"
     },
     "autoload": {
-        "psr-0": { "Flow": "src/" }
+        "psr-0": {
+            "Flow": "src/",
+            "": "src/"
+        }
     }
 }

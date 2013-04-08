@@ -1,5 +1,5 @@
 {
-    "hash": "e47ba5a20904192460d15a80f1042576",
+    "hash": "18e1de2708f34c21275f375aaad82540",
     "packages": [
         {
             "name": "doctrine/common",
@@ -801,7 +801,7 @@
         "silex/silex": 20
     },
     "platform": {
-        "php": ">=5.3.0"
+        "php": ">=5.3.3"
     },
     "platform-dev": [
 

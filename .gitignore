@@ -1,5 +1,5 @@
-config.yaml
-var
-flow.sublime-project
-flow.sublime-workspace
-vendor
+/config/config.yaml
+/var
+/flow.sublime-*
+/vendor
+*.php~

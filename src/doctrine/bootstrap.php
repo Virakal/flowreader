@@ -6,10 +6,10 @@ use Doctrine\ORM\EntityManager;
 
 require_once "vendor/autoload.php";
 
-$appConfig = Yaml::parse(__DIR__ . '/config/config.yaml');
+$appConfig = Yaml::parse(__DIR__ . '/../../config/config.yaml');
 
-$isDevMode = isset($appConfig['environment']['devMode']) && $appConfig['environment']['devMode']);
+$isDevMode = isset($appConfig['environment']['devMode']) && $appConfig['environment']['devMode'];
 
-$config = Setup::createYAMLMetadataConfiguration(array(__DIR__ . "/config/objects"), $isDevMode);
+$config = Setup::createYAMLMetadataConfiguration(array(__DIR__ . "/../../config/objects"), $isDevMode);
 
 $entityManager = EntityManager::create($appConfig['database'], $config);

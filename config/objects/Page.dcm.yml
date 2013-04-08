@@ -5,15 +5,19 @@ Page:
     id:
       type: integer
       generator:
-        startegy: AUTO
+        strategy: AUTO
   fields:
     filename:
       type: string
-    chapter_id:
-      type: integer
     page_no:
       type: integer
     height:
       type: integer
+      nullable: true
     width:
       type: integer
+      nullable: true
+  manyToOne:
+    chapter:
+      targetEntity: Chapter
+      inversedBy: pages

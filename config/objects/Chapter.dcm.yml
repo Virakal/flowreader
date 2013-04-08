@@ -1,0 +1,24 @@
+Chapter:
+  type: entity
+  table: chapter
+  id:
+    id:
+      type: integer
+      generator:
+        strategy: AUTO
+  fields:
+    chapter_no:
+      type: integer
+    title:
+      type: string
+      nullable: true
+    date:
+      type: datetime
+  oneToMany:
+    pages:
+      targetEntity: Page
+      mappedBy: chapter_id
+  manyToOne:
+    series:
+      targetEntity: Series
+      inversedBy: chapters
