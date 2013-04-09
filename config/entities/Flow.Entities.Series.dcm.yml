@@ -1,0 +1,15 @@
+Flow\Entities\Series:
+  type: entity
+  table: series
+  id:
+    id:
+      type: integer
+      generator:
+        strategy: AUTO
+  fields:
+    name:
+      type: string
+  oneToMany:
+    chapters:
+      targetEntity: Chapter
+      mappedBy: series_id

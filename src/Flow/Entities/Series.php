@@ -1,6 +1,6 @@
 <?php
 
-
+namespace Flow\Entities;
 
 use Doctrine\ORM\Mapping as ORM;
 

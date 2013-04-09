@@ -1,6 +1,71 @@
 {
-    "hash": "18e1de2708f34c21275f375aaad82540",
+    "hash": "4c315a0feadba4061a8b7513bb52471f",
     "packages": [
+        {
+            "name": "dflydev/doctrine-orm-service-provider",
+            "version": "v1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/dflydev/dflydev-doctrine-orm-service-provider",
+                "reference": "v1.0.0"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/dflydev/dflydev-doctrine-orm-service-provider/zipball/v1.0.0",
+                "reference": "v1.0.0",
+                "shasum": ""
+            },
+            "require": {
+                "doctrine/orm": ">=2.3,<3.0",
+                "php": ">=5.3.3",
+                "pimple/pimple": "1.*@dev"
+            },
+            "require-dev": {
+                "cilex/cilex": "1.*@dev",
+                "silex/silex": "1.*@dev"
+            },
+            "suggest": {
+                "dflydev/psr0-resource-locator-service-provider": "1.0.*@dev"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.0-dev"
+                }
+            },
+            "autoload": {
+                "psr-0": {
+                    "Dflydev\\Cilex\\Provider\\DoctrineOrm": "src",
+                    "Dflydev\\Pimple\\Provider\\DoctrineOrm": "src",
+                    "Dflydev\\Silex\\Provider\\DoctrineOrm": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Dragonfly Development Inc.",
+                    "email": "info@dflydev.com",
+                    "homepage": "http://dflydev.com"
+                },
+                {
+                    "name": "Beau Simensen",
+                    "email": "beau@dflydev.com",
+                    "homepage": "http://beausimensen.com"
+                }
+            ],
+            "description": "Doctrine ORM Service Provider",
+            "keywords": [
+                "cilex",
+                "doctrine",
+                "orm",
+                "pimple",
+                "silex"
+            ],
+            "time": "2012-12-30 23:41:22"
+        },
         {
             "name": "doctrine/common",
             "version": "2.3.0",
@@ -293,12 +358,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/fabpot/Silex.git",
-                "reference": "31139babedb2a4f504737d1d8c5255fca102dae2"
+                "reference": "80f0abd669b2c615b73065b76c63ff27c7d3c38d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/fabpot/Silex/zipball/31139babedb2a4f504737d1d8c5255fca102dae2",
-                "reference": "31139babedb2a4f504737d1d8c5255fca102dae2",
+                "url": "https://api.github.com/repos/fabpot/Silex/zipball/80f0abd669b2c615b73065b76c63ff27c7d3c38d",
+                "reference": "80f0abd669b2c615b73065b76c63ff27c7d3c38d",
                 "shasum": ""
             },
             "require": {
@@ -311,6 +376,7 @@
             },
             "require-dev": {
                 "doctrine/dbal": ">=2.2.0,<2.4.0-dev",
+                "monolog/monolog": ">=1.4,<2.0,>=1.4.1",
                 "swiftmailer/swiftmailer": "4.2.*",
                 "symfony/browser-kit": ">=2.1,<2.3-dev",
                 "symfony/config": ">=2.1,<2.3-dev",
@@ -366,7 +432,7 @@
             "keywords": [
                 "microframework"
             ],
-            "time": "2013-04-03 19:59:11"
+            "time": "2013-04-08 20:37:52"
         },
         {
             "name": "symfony/config",

@@ -2,28 +2,18 @@
 
 require_once __DIR__ . '/../vendor/autoload.php';
 
-use Symfony\Component\Yaml\Yaml;
-use Silex\Application;
-use Silex\Provider\TwigServiceProvider;
-use Silex\Provider\DoctrineServiceProvider;
-
-$app = new Application();
-
-// Config
-$app['config'] = Yaml::parse(__DIR__ . '/../config/config.yaml');
-
-// Twig
-$app->register(new TwigServiceProvider(), array(
-    'twig.path' => __DIR__ . '/templates',
-));
-
-// Doctrine
-$app->register(new DoctrineServiceProvider(), array(
-    'db.options' => $app['config']['database'],
-));
+$app = Flow\Bootstrap::bootstrap();
 
 $app->get('/', function () use ($app) {
-    return $app['twig']->render('index.html.twig');
+    $dql = 'SELECT COUNT(p) FROM e:Page p';
+
+    $query = $app['orm.em']->createQuery($dql);
+
+    $pageCount = $query->getSingleScalarResult();
+
+    return $app['twig']->render('index.html.twig', array(
+        'pageCount' => $pageCount,
+    ));
 });
 
 $app->run();

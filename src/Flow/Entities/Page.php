@@ -1,6 +1,6 @@
 <?php
 
-
+namespace Flow\Entities;
 
 use Doctrine\ORM\Mapping as ORM;
 
@@ -22,11 +22,6 @@ class Page
     /**
      * @var integer
      */
-    private $chapter_id;
-
-    /**
-     * @var integer
-     */
     private $page_no;
 
     /**
@@ -38,6 +33,11 @@ class Page
      * @var integer
      */
     private $width;
+
+    /**
+     * @var \Chapter
+     */
+    private $chapter;
 
 
     /**
@@ -71,29 +71,6 @@ class Page
     public function getFilename()
     {
         return $this->filename;
-    }
-
-    /**
-     * Set chapter_id
-     *
-     * @param integer $chapterId
-     * @return Page
-     */
-    public function setChapterId($chapterId)
-    {
-        $this->chapter_id = $chapterId;
-    
-        return $this;
-    }
-
-    /**
-     * Get chapter_id
-     *
-     * @return integer 
-     */
-    public function getChapterId()
-    {
-        return $this->chapter_id;
     }
 
     /**
@@ -164,19 +141,14 @@ class Page
     {
         return $this->width;
     }
-    /**
-     * @var \chapter
-     */
-    private $chapter;
-
 
     /**
      * Set chapter
      *
-     * @param \chapter $chapter
+     * @param \Chapter $chapter
      * @return Page
      */
-    public function setChapter(\chapter $chapter = null)
+    public function setChapter(\Chapter $chapter = null)
     {
         $this->chapter = $chapter;
     
@@ -186,7 +158,7 @@ class Page
     /**
      * Get chapter
      *
-     * @return \chapter 
+     * @return \Chapter 
      */
     public function getChapter()
     {
