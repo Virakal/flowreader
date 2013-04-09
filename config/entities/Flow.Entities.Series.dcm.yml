@@ -9,7 +9,8 @@ Flow\Entities\Series:
   fields:
     name:
       type: string
+      unique: true
   oneToMany:
     chapters:
       targetEntity: Chapter
-      mappedBy: series_id
+      mappedBy: series

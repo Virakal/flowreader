@@ -49,6 +49,9 @@ class Bootstrap
         $app['orm.em']->getConfiguration()
             ->addEntityNamespace('e', 'Flow\Entities');
 
+        // Locale
+        date_default_timezone_set($app['config']['environment']['timezone']);
+
         return $app;
     }
 }

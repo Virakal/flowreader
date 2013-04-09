@@ -68,10 +68,10 @@ class Series
     /**
      * Add chapters
      *
-     * @param \Chapter $chapters
+     * @param Flow\Entities\Chapter $chapters
      * @return Series
      */
-    public function addChapter(\Chapter $chapters)
+    public function addChapter(Chapter $chapters)
     {
         $this->chapters[] = $chapters;
     
@@ -81,9 +81,9 @@ class Series
     /**
      * Remove chapters
      *
-     * @param \Chapter $chapters
+     * @param Flow\Entities\Chapter $chapters
      */
-    public function removeChapter(\Chapter $chapters)
+    public function removeChapter(Chapter $chapters)
     {
         $this->chapters->removeElement($chapters);
     }

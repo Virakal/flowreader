@@ -8,12 +8,15 @@
 # You can use any of these options:
 #  http://docs.doctrine-project.org/projects/doctrine-dbal/en/latest/reference/configuration.html
 database:
-  driver: 'pdo_mysql'
-  dbname: 'flow'
-  host: 'localhost'
-  user: 'user'
-  password: 'password'
-  charset: 'utf8'
+  driver: pdo_mysql
+  dbname: flow
+  host: localhost
+  user: user
+  password: password
+  charset: utf8
+
+environment:
+  timezone: UTC
 
 site:
-  name: 'FlowReader'
+  name: FlowReader

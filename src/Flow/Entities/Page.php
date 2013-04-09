@@ -35,7 +35,7 @@ class Page
     private $width;
 
     /**
-     * @var \Chapter
+     * @var Flow\Entities\Chapter
      */
     private $chapter;
 
@@ -145,10 +145,10 @@ class Page
     /**
      * Set chapter
      *
-     * @param \Chapter $chapter
+     * @param Flow\Entities\Chapter $chapter
      * @return Page
      */
-    public function setChapter(\Chapter $chapter = null)
+    public function setChapter(Chapter $chapter = null)
     {
         $this->chapter = $chapter;
     
@@ -158,7 +158,7 @@ class Page
     /**
      * Get chapter
      *
-     * @return \Chapter 
+     * @return Flow\Entities\Chapter 
      */
     public function getChapter()
     {

@@ -1,0 +1,8 @@
+{% extends 'layout.html.twig' %}
+
+{% block content %}
+<article class="series">
+    <h1>{{series.name}}</h1>
+    <p>This series has {{series.getChapters.count}} chapters.</p>
+</article>
+{% endblock %}

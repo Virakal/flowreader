@@ -35,7 +35,7 @@ class Chapter
     private $pages;
 
     /**
-     * @var \Series
+     * @var Flow\Entities\Series
      */
     private $series;
 
@@ -129,10 +129,10 @@ class Chapter
     /**
      * Add pages
      *
-     * @param \Page $pages
+     * @param Flow\Entities\Page $pages
      * @return Chapter
      */
-    public function addPage(\Page $pages)
+    public function addPage(Page $pages)
     {
         $this->pages[] = $pages;
     
@@ -142,9 +142,9 @@ class Chapter
     /**
      * Remove pages
      *
-     * @param \Page $pages
+     * @param Flow\Entities\Page $pages
      */
-    public function removePage(\Page $pages)
+    public function removePage(Page $pages)
     {
         $this->pages->removeElement($pages);
     }
@@ -162,10 +162,10 @@ class Chapter
     /**
      * Set series
      *
-     * @param \Series $series
+     * @param Flow\Entities\Series $series
      * @return Chapter
      */
-    public function setSeries(\Series $series = null)
+    public function setSeries(Series $series = null)
     {
         $this->series = $series;
     
@@ -175,7 +175,7 @@ class Chapter
     /**
      * Get series
      *
-     * @return \Series 
+     * @return Flow\Entities\Series 
      */
     public function getSeries()
     {

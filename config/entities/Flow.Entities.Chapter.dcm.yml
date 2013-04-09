@@ -17,7 +17,7 @@ Flow\Entities\Chapter:
   oneToMany:
     pages:
       targetEntity: Page
-      mappedBy: chapter_id
+      mappedBy: chapter
   manyToOne:
     series:
       targetEntity: Series
