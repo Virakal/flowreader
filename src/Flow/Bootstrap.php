@@ -33,7 +33,7 @@ class Bootstrap
         ));
 
         // Doctrine ORM
-        $app->register(new DoctrineOrmServiceProvider, array(
+        $app->register(new DoctrineOrmServiceProvider(), array(
             'orm.proxies_dir' => '/../DoctrineProxy',
             'orm.em.options' => array(
                 'mappings' => array(
@@ -51,6 +51,9 @@ class Bootstrap
 
         // Locale
         date_default_timezone_set($app['config']['environment']['timezone']);
+
+        // URL Generator
+        $app->register(new UrlGeneratorServiceProvider(), array());
 
         return $app;
     }

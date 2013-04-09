@@ -21,3 +21,6 @@ Flow\Entities\Page:
     chapter:
       targetEntity: Chapter
       inversedBy: pages
+  uniqueConstraints:
+    page_number_idx:
+      columns: chapter_id, page_no

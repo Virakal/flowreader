@@ -22,3 +22,6 @@ Flow\Entities\Chapter:
     series:
       targetEntity: Series
       inversedBy: chapters
+  uniqueConstraints:
+    chapter_number_idx:
+      columns: series_id, chapter_no

@@ -4,5 +4,15 @@
 <article class="series">
     <h1>{{series.name}}</h1>
     <p>This series has {{series.getChapters.count}} chapters.</p>
+
+    {% if series.chapters.count > 0 %}
+        <ul>
+            {% for chapter in series.chapters %}
+                <li>
+                    {{chapter.chapterNo}} - <a href="{{app.url.generate(chapter)}}">{{chapter.title}}</a>
+                </li>
+            {% endfor %}
+        </ul>
+    {% endif %}
 </article>
 {% endblock %}
