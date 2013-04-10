@@ -10,6 +10,9 @@ Flow\Entities\Series:
     name:
       type: string
       unique: true
+    slug:
+      type: string
+      unique: true
   oneToMany:
     chapters:
       targetEntity: Chapter

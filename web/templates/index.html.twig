@@ -3,5 +3,15 @@
 {% block content %}
 <h1>Welcome to {{app.config.site.name}}</h1>
 
-<p>There are {{pageCount}} pages.</p>
+<p>There are {{seriesList|length}} series.</p>
+
+{% if seriesList|length > 0 %}
+    <ul>
+        {% for series in seriesList %}
+            <li>
+                <a href="{{app.url.generate(series)}}">{{series.name}}</a>
+            </li>
+        {% endfor %}
+    </ul>
+{% endif %}
 {% endblock %}

@@ -29,6 +29,9 @@ $app->get('/{series}/{chapter}/{page}',
 // Chapter
 $app->get('/{series}/{chapter}',
     function ($series, $chapter) use ($app) {
+    $dql = 'SELECT p FROM e:Page JOIN e:Chapter c JOIN e:Series s'
+         . ' WHERE s.name = ?1 AND c.chapter_no = ?2'
+         . ' ORDER BY c.chapter_no DESC';
 
     return 'placeholder';
 });
@@ -37,7 +40,8 @@ $app->get('/{series}/{chapter}',
 $app->get('/{series}',
     function ($series) use ($app) {
 
-    $dql = 'SELECT s FROM e:Series s WHERE s.name = ?1';
+    $dql = 'SELECT s FROM e:Series s JOIN e:Chapter c'
+         . ' WHERE s.name = ?1 ORDER BY c.chapter_no';
 
     $seriesEntity = $app['orm.em']->createQuery($dql)
         ->setParameter(1, $series)
@@ -51,14 +55,14 @@ $app->get('/{series}',
 
 // Index
 $app->get('/', function () use ($app) {
-    $dql = 'SELECT COUNT(p) FROM e:Page p';
+    $dql = 'SELECT s FROM e:Series s ORDER BY s.name';
 
     $query = $app['orm.em']->createQuery($dql);
 
-    $pageCount = $query->getSingleScalarResult();
+    $series = $query->getResult();
 
     return $app['twig']->render('index.html.twig', array(
-        'pageCount' => $pageCount,
+        'seriesList' => $series,
     ));
 });
 
