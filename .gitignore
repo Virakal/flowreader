@@ -3,3 +3,4 @@
 /flow.sublime-*
 /vendor
 *.php~
+/src/DoctrineProxy/*.php

@@ -34,7 +34,7 @@ class Bootstrap
 
         // Doctrine ORM
         $app->register(new DoctrineOrmServiceProvider(), array(
-            'orm.proxies_dir' => '/../DoctrineProxy',
+            'orm.proxies_dir' => __DIR__ . '/../DoctrineProxy',
             'orm.em.options' => array(
                 'mappings' => array(
                     array(
