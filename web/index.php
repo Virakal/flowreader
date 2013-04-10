@@ -23,8 +23,21 @@ $app->get('/admin', function () use ($app) {
 // Page
 $app->get('/{series}/{chapter}/{page}/',
     function ($series, $chapter, $page) use ($app) {
+        $dql = 'SELECT p FROM e:Page p JOIN p.chapter c JOIN c.series s'
+         . ' WHERE s.slug = ?1 AND c.chapter_no = ?2 AND p.page_no = ?3'
+         . ' ORDER BY c.chapter_no DESC';
 
-    return 'placeholder';
+    $pageEntity = $app['orm.em']->createQuery($dql)
+        ->setParameter(1, $series)
+        ->setParameter(2, $chapter)
+        ->setParameter(3, $page)
+        ->getSingleResult();
+
+    return $app['twig']->render('page/index.html.twig', array(
+        'page' => $pageEntity,
+        'chapter' => $pageEntity->getChapter(),
+        'series' => $pageEntity->getChapter()->getSeries(),
+    ));
 });
 
 // Chapter
@@ -41,6 +54,8 @@ $app->get('/{series}/{chapter}/',
 
     return $app['twig']->render('chapter/index.html.twig', array(
         'chapter' => $chapterEntity,
+        'series' => $chapterEntity->getSeries(),
+        'pages' => $chapterEntity->getPages(),
     ));
 });
 
@@ -57,6 +72,7 @@ $app->get('/{series}/',
 
     return $app['twig']->render('series/index.html.twig', array(
         'series' => $seriesEntity,
+        'chapters' => $seriesEntity->getChapters(),
     ));
 });
 

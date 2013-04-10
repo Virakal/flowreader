@@ -1,0 +1,14 @@
+{% extends 'layout.html.twig' %}
+
+{% block content %}
+<article class="page">
+    <h1>{{series.name}} - {{chapter.chapterNo}}</h1>
+    <h2>Page {{page.pageNo}}</h2>
+
+    <img src="{{page.fileName}}" alt="" />
+
+    <p><a href="{{app.url.generate(chapter)}}">Back to chapter {{chapter.chapterNo}}</a></p>
+    <p><a href="{{app.url.generate(series)}}">Back to {{series.name}}</a></p>
+    <p><a href="/">Back home</a></p>
+</article>
+{% endblock %}

@@ -3,11 +3,11 @@
 {% block content %}
 <article class="series">
     <h1>{{series.name}}</h1>
-    <p>This series has {{series.chapters.count}} chapters.</p>
+    <p>This series has {{chapters.count}} chapters.</p>
 
-    {% if series.chapters.count > 0 %}
+    {% if chapters.count > 0 %}
         <ul>
-            {% for chapter in series.chapters %}
+            {% for chapter in chapters %}
                 <li>
                     {{chapter.chapterNo}} - <a href="{{app.url.generate(chapter)}}">{{chapter.title}}</a>
                 </li>
@@ -15,6 +15,6 @@
         </ul>
     {% endif %}
 
-    <a href="/">Back home</a>
+    <p><a href="/">Back home</a></p>
 </article>
 {% endblock %}
