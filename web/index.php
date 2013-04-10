@@ -6,41 +6,49 @@ $app = Flow\Bootstrap::bootstrap();
 
 // Admin
 $app->get('/admin', function () use ($app) {
-    $chapter = new Flow\Entities\Chapter();
+    $em = $app['orm.em'];
+    $page = new Flow\Entities\Page();
 
-    $chapter->setTitle('Test Chapter')
-        ->setChapterNo(1)
-        ->setDate(new DateTime('now', new DateTimeZone('UTC')))
-        ->setSeries($app['orm.em']->find('e:Series', 1));
+    //$series = $em->find('e:Series', 1);
+    $page->setPageNo(1)
+        ->setChapter($em->find('e:Chapter', 3))
+        ->setFilename('test/3/1.png');
 
-    $app['orm.em']->persist($chapter);
-    $app['orm.em']->flush();
+    $em->persist($page);
+    $em->flush();
 
-    return "Made {$chapter->getId()} with name {$chapter->getTitle()}";
+    return "Yadda yadda";
 });
 
 // Page
-$app->get('/{series}/{chapter}/{page}',
+$app->get('/{series}/{chapter}/{page}/',
     function ($series, $chapter, $page) use ($app) {
 
     return 'placeholder';
 });
 
 // Chapter
-$app->get('/{series}/{chapter}',
+$app->get('/{series}/{chapter}/',
     function ($series, $chapter) use ($app) {
-    $dql = 'SELECT p FROM e:Page JOIN e:Chapter c JOIN e:Series s'
-         . ' WHERE s.name = ?1 AND c.chapter_no = ?2'
+    $dql = 'SELECT c FROM e:Chapter c JOIN c.pages p JOIN c.series s'
+         . ' WHERE s.slug = ?1 AND c.chapter_no = ?2'
          . ' ORDER BY c.chapter_no DESC';
 
-    return 'placeholder';
+    $chapterEntity = $app['orm.em']->createQuery($dql)
+        ->setParameter(1, $series)
+        ->setParameter(2, $chapter)
+        ->getSingleResult();
+
+    return $app['twig']->render('chapter/index.html.twig', array(
+        'chapter' => $chapterEntity,
+    ));
 });
 
 // Series
-$app->get('/{series}',
+$app->get('/{series}/',
     function ($series) use ($app) {
 
-    $dql = 'SELECT s FROM e:Series s JOIN e:Chapter c'
+    $dql = 'SELECT s FROM e:Series s JOIN s.chapters c'
          . ' WHERE s.name = ?1 ORDER BY c.chapter_no';
 
     $seriesEntity = $app['orm.em']->createQuery($dql)
@@ -49,7 +57,6 @@ $app->get('/{series}',
 
     return $app['twig']->render('series/index.html.twig', array(
         'series' => $seriesEntity,
-        'chapters' => $seriesEntity->getChapters(),
     ));
 });
 
@@ -59,10 +66,10 @@ $app->get('/', function () use ($app) {
 
     $query = $app['orm.em']->createQuery($dql);
 
-    $series = $query->getResult();
+    $seriesList = $query->getResult();
 
     return $app['twig']->render('index.html.twig', array(
-        'seriesList' => $series,
+        'seriesList' => $seriesList,
     ));
 });
 

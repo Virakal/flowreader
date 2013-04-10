@@ -3,7 +3,7 @@
 {% block content %}
 <article class="series">
     <h1>{{series.name}}</h1>
-    <p>This series has {{series.getChapters.count}} chapters.</p>
+    <p>This series has {{series.chapters.count}} chapters.</p>
 
     {% if series.chapters.count > 0 %}
         <ul>
