@@ -12,8 +12,8 @@
     },
     "autoload": {
         "psr-0": {
-            "Flow": "src/",
-            "DoctrineProxy": "src/"
+            "DoctrineProxy": "src/",
+            "Flow": "src/"
         }
     }
 }
