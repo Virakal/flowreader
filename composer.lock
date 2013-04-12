@@ -1,5 +1,5 @@
 {
-    "hash": "4c315a0feadba4061a8b7513bb52471f",
+    "hash": "d19edac88221e66f684578a89a5d77e6",
     "packages": [
         {
             "name": "dflydev/doctrine-orm-service-provider",
@@ -358,12 +358,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/fabpot/Silex.git",
-                "reference": "80f0abd669b2c615b73065b76c63ff27c7d3c38d"
+                "reference": "1cd7f3f050b78dae4458d93892355720f56659f9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/fabpot/Silex/zipball/80f0abd669b2c615b73065b76c63ff27c7d3c38d",
-                "reference": "80f0abd669b2c615b73065b76c63ff27c7d3c38d",
+                "url": "https://api.github.com/repos/fabpot/Silex/zipball/1cd7f3f050b78dae4458d93892355720f56659f9",
+                "reference": "1cd7f3f050b78dae4458d93892355720f56659f9",
                 "shasum": ""
             },
             "require": {
@@ -432,7 +432,7 @@
             "keywords": [
                 "microframework"
             ],
-            "time": "2013-04-08 20:37:52"
+            "time": "2013-04-11 12:23:56"
         },
         {
             "name": "symfony/config",
@@ -854,6 +854,31 @@
                 "templating"
             ],
             "time": "2013-04-08 12:40:11"
+        },
+        {
+            "name": "virakal/cli",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Virakal/Cli.git",
+                "reference": "3098af88ef15db79bb9fa83cb5e70be0ff58cf29"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Virakal/Cli/zipball/3098af88ef15db79bb9fa83cb5e70be0ff58cf29",
+                "reference": "3098af88ef15db79bb9fa83cb5e70be0ff58cf29",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.0"
+            },
+            "type": "library",
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL-3.0"
+            ],
+            "description": "A small library for helping create UNIX PHP command line scripts",
+            "time": "2013-04-12 19:45:54"
         }
     ],
     "packages-dev": [
@@ -864,7 +889,8 @@
     ],
     "minimum-stability": "stable",
     "stability-flags": {
-        "silex/silex": 20
+        "silex/silex": 20,
+        "virakal/cli": 20
     },
     "platform": {
         "php": ">=5.3.3"
