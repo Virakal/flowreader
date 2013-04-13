@@ -53,7 +53,7 @@ class Bootstrap
         date_default_timezone_set($app['config']['environment']['timezone']);
 
         // URL Generator
-        $app->register(new UrlGeneratorServiceProvider(), array());
+        $app->register(new UrlGeneratorServiceProvider());
 
         return $app;
     }
