@@ -1,5 +1,5 @@
 {
-    "hash": "4c315a0feadba4061a8b7513bb52471f",
+    "hash": "f0adbf82b976c1ad941616d055bdc5e2",
     "packages": [
         {
             "name": "dflydev/doctrine-orm-service-provider",
@@ -358,12 +358,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/fabpot/Silex.git",
-                "reference": "80f0abd669b2c615b73065b76c63ff27c7d3c38d"
+                "reference": "8bf675f57cb7967cbfa3988be501f1dfe6c45432"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/fabpot/Silex/zipball/80f0abd669b2c615b73065b76c63ff27c7d3c38d",
-                "reference": "80f0abd669b2c615b73065b76c63ff27c7d3c38d",
+                "url": "https://api.github.com/repos/fabpot/Silex/zipball/8bf675f57cb7967cbfa3988be501f1dfe6c45432",
+                "reference": "8bf675f57cb7967cbfa3988be501f1dfe6c45432",
                 "shasum": ""
             },
             "require": {
@@ -432,7 +432,7 @@
             "keywords": [
                 "microframework"
             ],
-            "time": "2013-04-08 20:37:52"
+            "time": "2013-04-24 12:29:40"
         },
         {
             "name": "symfony/config",
