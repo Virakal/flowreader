@@ -24,7 +24,7 @@ class Bootstrap
 
         // Twig
         $app->register(new TwigServiceProvider(), array(
-            'twig.path' => __DIR__ . '/../../web/templates',
+            'twig.path' => __DIR__ . '/Resources/Templates',
         ));
 
         // Doctrine DBAL
