@@ -2,6 +2,9 @@
 
 require_once __DIR__ . '/../vendor/autoload.php';
 
+use Doctrine\Common\Collections\Criteria;
+use Doctrine\Orm\Query;
+
 $app = Flow\Bootstrap::bootstrap();
 
 // Admin
@@ -24,17 +27,23 @@ $app->get('/admin', function () use ($app) {
 $app->get('/{series}/{chapter}/{page}/',
     function ($series, $chapter, $page) use ($app) {
         $dql = 'SELECT p FROM e:Page p JOIN p.chapter c JOIN c.series s'
-         . ' WHERE s.slug = ?1 AND c.chapter_no = ?2 AND p.page_no = ?3'
+         . ' WHERE s.slug = ?1 AND c.chapter_no = ?2'
          . ' ORDER BY c.chapter_no DESC';
 
-    $pageEntity = $app['orm.em']->createQuery($dql)
+    $pageList = $app['orm.em']->createQuery($dql)
         ->setParameter(1, $series)
         ->setParameter(2, $chapter)
-        ->setParameter(3, $page)
-        ->getSingleResult();
+        ->getResult(Query::HYDRATE_OBJECT);
+
+    $pageList = new Doctrine\Common\Collections\ArrayCollection($pageList);
+
+    $pageEntity = $pageList->matching(Criteria::create()
+        ->where(Criteria::expr()->eq('pageNo', (int) $page))
+    )->first();
 
     return $app['twig']->render('page/index.html.twig', array(
         'page' => $pageEntity,
+        'pages' => $pageList,
         'chapter' => $pageEntity->getChapter(),
         'series' => $pageEntity->getChapter()->getSeries(),
     ));
