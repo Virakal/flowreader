@@ -5,7 +5,7 @@
     <h1>{{series.name}} - {{chapter.chapterNo}}</h1>
     <h2>Page {{page.pageNo}}</h2>
 
-    <img src="{{page.fileName}}" alt="" />
+    <img src="/img/{{page.fileName}}" alt="" />
 
     <p><a href="{{app.url.generate(chapter)}}">Back to chapter {{chapter.chapterNo}}</a></p>
     <p><a href="{{app.url.generate(series)}}">Back to {{series.name}}</a></p>

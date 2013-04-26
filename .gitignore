@@ -4,3 +4,4 @@
 /vendor
 *.php~
 /src/DoctrineProxy/*.php
+web/img/
