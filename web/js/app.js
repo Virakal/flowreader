@@ -17,6 +17,37 @@ app.run(function($rootScope) {
   });
 });
 
+app.factory('KeyHandler', function($rootScope) {
+  return {
+    _keyMap: {
+      'enter': 13,
+      'space': 32,
+      'up': 38,
+      'down': 40,
+      'left': 37,
+      'right': 39
+    },
+    add: function(spec) {
+      var eventName, selector,
+        _this = this;
+      selector = spec.selector || null;
+      eventName = spec.eventName || 'keyup';
+      console.log('Binding', spec.callback);
+      return $('body').on(eventName, spec.selector, function(e) {
+        var cb, key;
+        key = _this._keyMap[spec.key] || spec.key.charCodeAt(0);
+        if (key === e.which) {
+          cb = false;
+          $rootScope.$apply(function() {
+            return cb = spec.callback(e);
+          });
+        }
+        return cb;
+      });
+    }
+  };
+});
+
 Chapter = (function() {
 
   function Chapter(prototype) {
@@ -86,7 +117,27 @@ PageList = (function() {
 
 PageCtrl = (function() {
 
-  function PageCtrl($scope, $rootScope, $http) {
+  function PageCtrl($scope, $rootScope, $http, KeyHandler) {
+    $scope.nextPage = function($event) {
+      console.log('callnext');
+      $event.preventDefault();
+      $scope.pages.nextPage();
+      return true;
+    };
+    $scope.prevPage = function($event) {
+      console.log('callprev');
+      $event.preventDefault();
+      $scope.pages.prevPage();
+      return true;
+    };
+    KeyHandler.add({
+      key: 'right',
+      callback: $scope.nextPage
+    });
+    KeyHandler.add({
+      key: 'left',
+      callback: $scope.prevPage
+    });
     $scope.url = document.location.pathname;
     $http.get($scope.url).success(function(data, status, headers, config) {
       $scope.chapter = new Chapter(data.chapter);
@@ -98,14 +149,6 @@ PageCtrl = (function() {
         return $scope.page = (_ref = $scope.pages) != null ? _ref.getCurrent() : void 0;
       });
     });
-    $scope.nextPage = function($event) {
-      $event.preventDefault();
-      return $scope.pages.nextPage();
-    };
-    $scope.prevPage = function($event) {
-      $event.preventDefault();
-      return $scope.pages.prevPage();
-    };
   }
 
   return PageCtrl;

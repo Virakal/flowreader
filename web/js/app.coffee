@@ -13,6 +13,32 @@ app.run ($rootScope) ->
         # Allow selective CSS depending on whether JS is enabled
         $('body').removeClass('no-js').addClass('js')
 
+app.factory 'KeyHandler', ($rootScope) ->
+    _keyMap:
+        'enter': 13
+        'space': 32
+        'up': 38
+        'down': 40
+        'left': 37
+        'right': 39
+
+    add: (spec) ->
+        selector = spec.selector or null
+        eventName = spec.eventName or 'keyup'
+
+        console.log 'Binding', spec.callback
+
+        $('body').on eventName, spec.selector, (e) =>
+            key = this._keyMap[spec.key] || spec.key.charCodeAt(0)
+
+            if key is e.which
+                cb = false
+                $rootScope.$apply () ->
+                    cb = spec.callback(e)
+
+            return cb
+
+
 class Chapter
     constructor: (prototype) ->
         this.__proto__ = prototype
@@ -52,7 +78,29 @@ class PageList
         return this.getCurrent()
 
 class PageCtrl
-    constructor: ($scope, $rootScope, $http) ->
+    constructor: ($scope, $rootScope, $http, KeyHandler) ->
+        $scope.nextPage = ($event) ->
+            console.log('callnext')
+            $event.preventDefault()
+            $scope.pages.nextPage()
+
+            return true
+
+        $scope.prevPage = ($event) ->
+            console.log('callprev')
+            $event.preventDefault()
+            $scope.pages.prevPage()
+
+            return true
+
+        KeyHandler.add
+            key: 'right'
+            callback: $scope.nextPage
+
+        KeyHandler.add
+            key: 'left'
+            callback: $scope.prevPage
+
         $scope.url = document.location.pathname
 
         $http.get($scope.url).success (data, status, headers, config) ->
@@ -64,10 +112,3 @@ class PageCtrl
             $scope.$watch 'pages._currentPage', () ->
                 $scope.page = $scope.pages?.getCurrent()
 
-        $scope.nextPage = ($event) ->
-            $event.preventDefault()
-            $scope.pages.nextPage()
-
-        $scope.prevPage = ($event) ->
-            $event.preventDefault()
-            $scope.pages.prevPage()
