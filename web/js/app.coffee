@@ -26,8 +26,6 @@ app.factory 'KeyHandler', ($rootScope) ->
         selector = spec.selector or null
         eventName = spec.eventName or 'keyup'
 
-        console.log 'Binding', spec.callback
-
         $('body').on eventName, spec.selector, (e) =>
             key = this._keyMap[spec.key] || spec.key.charCodeAt(0)
 
@@ -80,14 +78,12 @@ class PageList
 class PageCtrl
     constructor: ($scope, $rootScope, $http, KeyHandler) ->
         $scope.nextPage = ($event) ->
-            console.log('callnext')
             $event.preventDefault()
             $scope.pages.nextPage()
 
             return true
 
         $scope.prevPage = ($event) ->
-            console.log('callprev')
             $event.preventDefault()
             $scope.pages.prevPage()
 
