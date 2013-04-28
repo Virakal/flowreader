@@ -4,6 +4,8 @@ require_once __DIR__ . '/../vendor/autoload.php';
 
 use Doctrine\Common\Collections\Criteria;
 use Doctrine\Orm\Query;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 $app = Flow\Bootstrap::bootstrap();
 
@@ -25,7 +27,7 @@ $app->get('/admin', function () use ($app) {
 
 // Page
 $app->get('/{series}/{chapter}/{page}/',
-    function ($series, $chapter, $page) use ($app) {
+    function (Request $request, $series, $chapter, $page) use ($app) {
         $dql = 'SELECT p FROM e:Page p JOIN p.chapter c JOIN c.series s'
          . ' WHERE s.slug = ?1 AND c.chapter_no = ?2'
          . ' ORDER BY c.chapter_no DESC';
@@ -40,6 +42,38 @@ $app->get('/{series}/{chapter}/{page}/',
     $pageEntity = $pageList->matching(Criteria::create()
         ->where(Criteria::expr()->eq('pageNo', (int) $page))
     )->first();
+
+    if ($request->isXmlHttpRequest()) {
+        $chapter = $pageEntity->getChapter();
+        $series = $pageEntity->getChapter()->getSeries();
+
+        $data = array(
+            'series' => array(
+                'id' => $series->getId(),
+                'name' => $series->getName(),
+                'slug' => $series->getSlug(),
+            ),
+            'chapter' => array(
+                'id' => $chapter->getId(),
+                'name' => $chapter->getTitle(),
+                'chapterNo' => $chapter->getChapterNo(),
+                'date' => $chapter->getDate(),
+            ),
+            'pages' => array(),
+        );
+
+        foreach ($pageList as $page) {
+            $data['pages'][] = array(
+                'id' => $page->getId(),
+                'filename' => '/img/' . $page->getFilename(),
+                'pageNo' => $page->getPageNo(),
+                'height' => $page->getHeight(),
+                'width' => $page->getWidth(),
+            );
+        }
+
+        return new Response(json_encode($data), 200, array('Cache-Control' => 'no-store'));
+    }
 
     return $app['twig']->render('page/index.html.twig', array(
         'page' => $pageEntity,

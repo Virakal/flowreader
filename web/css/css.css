@@ -5221,3 +5221,28 @@ a.badge:focus {
 h1 {
   text-align: center;
 }
+.no-js img {
+  max-width: inherit;
+}
+article.page {
+  text-align: center;
+}
+article.page .controls {
+  *zoom: 1;
+  zoom: 1;
+  width: 100%;
+}
+article.page .controls:before,
+article.page .controls:after {
+  content: "";
+  display: table;
+}
+article.page .controls:after {
+  clear: both;
+}
+article.page .controls a {
+  float: right;
+}
+article.page .controls a:first-child {
+  float: left;
+}

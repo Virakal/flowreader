@@ -3,9 +3,14 @@
 {% block content %}
 <article class="page" ng-controller="PageCtrl">
     <h1>{{series.name}} - {{chapter.chapterNo}}</h1>
-    <h2>Page {{page.pageNo}}</h2>
+    <h2>Page <span ng:bind="page.pageNo">{{page.pageNo}}</span></h2>
 
-    <img src="/img/{{page.fileName}}" ng-src="{[page.filename]}" alt="" />
+    <img src="/img/{{page.fileName}}" ng:src="{[page.filename]}" alt="" />
+
+    <div class="controls">
+        <a href="app.url.generate(prevPage)" ng:click="prevPage($event)">Previous Page</a>
+        <a href="app.url.generate(nextPage)" ng:click="nextPage($event)">Next Page</a>
+    </div>
 
     <p><a href="{{app.url.generate(chapter)}}">Back to chapter {{chapter.chapterNo}}</a></p>
     <p><a href="{{app.url.generate(series)}}">Back to {{series.name}}</a></p>
